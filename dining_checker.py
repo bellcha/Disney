@@ -78,7 +78,8 @@ for day in park_days:
                         for place in resturants[i]['singleLocation']['offers']:
                             results = DisneyDiningAvailability(location=resturant_dict[i.split(';')[0]],
                             time=place['label'], date=place['date'])
-                            disney_df = disney_df.append(asdict(results), ignore_index=True)
+                            row = pd.DataFrame([asdict(results)])
+                            disney_df = pd.concat([disney_df, row], axis=0, ignore_index=True)
 
                 except KeyError as err:
                     print(err)
