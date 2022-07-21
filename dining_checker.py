@@ -37,7 +37,7 @@ headers = {
 resturant_dict = {
     '90002237':'Garden Grill Resturant',
     '90001744': 'Hollywood & Vine',
-    '90002688':'Tusker House Resturant',
+    '90002686':'Tusker House Resturant',
     '90001369':'Chef Mickey',
     '90001248':'Story Book Dining at Artist Point with Snow White',
     '19233597':'Topolinos Terrace - Flavors of the Riveria',
