@@ -70,7 +70,7 @@ for day in park_days:
                     if i.split(';')[0] in rest_list:
                         for place in resturants[i]['singleLocation']['offers']:
                             results = DisneyDiningAvailability(resturant_dict[i.split(';')[0]],**place)
-                            print(results)
+                            print(f'{results}\n')
                         print('\n')
 
                 except KeyError as err:
