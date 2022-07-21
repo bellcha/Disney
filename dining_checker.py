@@ -1,5 +1,15 @@
 import requests
 import json
+from dataclasses import dataclass
+
+@dataclass
+class DisneyDiningAvailability:
+    location:str
+    date:str
+    time:str
+    label:str
+    url:str
+    productType:str
 
 url = f"https://disneyworld.disney.go.com/finder/api/v1/explorer-service/dining-availability-list/false/wdw/80007798;entityType=destination/2022-09-11/4/?mealPeriod=80000714"
 
@@ -36,7 +46,6 @@ meal_period = {
     'dinner':80000714,
     'breakfast':80000712,
     'brunch':80000713
-
 }
 
 response = requests.request("GET", url, headers=headers)
@@ -48,9 +57,12 @@ resturants = json_raw['availability']
 for i in resturants:
     if resturants[i]['hasAvailability']:
         try:
-            print(i.split(';')[0]+'\n')
-            print(resturants[i]['singleLocation']['offers'])
-            print('\n')
+            rest_list = [i for i in resturant_dict]
+            if i.split(';')[0] in rest_list:
+                for place in resturants[i]['singleLocation']['offers']:
+                    results = DisneyDiningAvailability(resturant_dict[i.split(';')[0]],**place)
+                    print(results)
+                print('\n')
 
         except KeyError as err:
             print(err)
