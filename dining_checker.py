@@ -30,6 +30,7 @@ headers = {
   'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36'
 }
 
+#Codes that Disney uses for resturants.  Not an complete list, just the ones I'm tracking.
 resturant_dict = {
     '90002237':'Garden Grill Resturant',
     '90001744': 'Hollywood & Vine',
