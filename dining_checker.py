@@ -95,7 +95,7 @@ email_config = config['EMAIL']
 EMAIL_ADDRESS = email_config['email']
 EMAIL_PASSWORD = email_config['password']
 
-contacts = ['bellcha@gmail.com']
+contacts = [email_config['email'], email_config['cc']]
 
 msg = EmailMessage()
 msg['Subject'] = 'Disney Dining Schedule'
