@@ -2,6 +2,8 @@ import requests
 import json
 from dataclasses import dataclass
 
+#TODO: at least add a main() ffs.
+
 @dataclass
 class DisneyDiningAvailability:
     location:str
