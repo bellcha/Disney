@@ -2,6 +2,9 @@ import requests
 import json
 import pandas as pd
 from dataclasses import dataclass, asdict
+import smtplib
+from email.message import EmailMessage
+from configparser import ConfigParser
 
 #TODO: at least add a main() ffs.
 
@@ -83,3 +86,29 @@ for day in park_days:
 print(disney_df.head(5))
 
 disney_df.to_excel('disney_dining.xlsx', index=False)
+
+config = ConfigParser()
+config.read('config.ini')
+
+email_config = config['EMAIL']
+
+EMAIL_ADDRESS = email_config['email']
+EMAIL_PASSWORD = email_config['password']
+
+contacts = ['bellcha@gmail.com']
+
+msg = EmailMessage()
+msg['Subject'] = 'Disney Dining Schedule'
+msg['From'] = EMAIL_ADDRESS
+msg['To'] = contacts
+msg.set_content('Disney Dining Availability...')
+
+with open('disney_dining.xlsx', 'rb') as f:
+    file_data = f.read()
+    file_name = f.name
+
+    msg.add_attachment(file_data, maintype='application',subtype='octet-stream', filename=file_name)
+
+with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+    smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+    smtp.send_message(msg)
