@@ -1,6 +1,7 @@
 import requests
 import json
-from dataclasses import dataclass
+import pandas as pd
+from dataclasses import dataclass, asdict
 
 #TODO: at least add a main() ffs.
 
@@ -9,9 +10,6 @@ class DisneyDiningAvailability:
     location:str
     date:str
     time:str
-    label:str
-    url:str
-    productType:str
 
 
 headers = {
@@ -51,6 +49,8 @@ meal_period = {
     'dinner':80000714
 }
 
+disney_df = pd.DataFrame(columns=['location', 'date', 'time'])
+
 park_days = [11,12,13,14,17]
 
 for day in park_days:
@@ -73,8 +73,13 @@ for day in park_days:
                     rest_list = [i for i in resturant_dict]
                     if i.split(';')[0] in rest_list:
                         for place in resturants[i]['singleLocation']['offers']:
-                            results = DisneyDiningAvailability(resturant_dict[i.split(';')[0]],**place)
-                            print(f'Resturant: {results.location}\nDate: {results.date}\nTime: {results.label}\n')
+                            results = DisneyDiningAvailability(location=resturant_dict[i.split(';')[0]],
+                            time=place['label'], date=place['date'])
+                            print(f'Resturant: {results.location}\nDate: {results.date}\nTime: {results.time}\n')
+                            disney_df = disney_df.append(asdict(results), ignore_index=True)
 
                 except KeyError as err:
                     print(err)
+print(disney_df.head(5))
+
+disney_df.to_excel('disney_dining.xlsx', index=False)
