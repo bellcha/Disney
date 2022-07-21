@@ -11,7 +11,6 @@ class DisneyDiningAvailability:
     url:str
     productType:str
 
-url = f"https://disneyworld.disney.go.com/finder/api/v1/explorer-service/dining-availability-list/false/wdw/80007798;entityType=destination/2022-09-11/4/?mealPeriod=80000714"
 
 headers = {
   'authority': 'disneyworld.disney.go.com',
@@ -42,27 +41,37 @@ resturant_dict = {
 }
 
 meal_period = {
-    'lunch':80000717,
-    'dinner':80000714,
     'breakfast':80000712,
-    'brunch':80000713
+    'brunch':80000713,
+    'lunch':80000717,
+    'dinner':80000714
 }
 
-response = requests.request("GET", url, headers=headers)
+park_days = [11,12,13,14,17]
 
-json_raw = json.loads(response.text)
+for day in park_days:
 
-resturants = json_raw['availability']
+    print(f'Date: 09-{day}-2022\n')
 
-for i in resturants:
-    if resturants[i]['hasAvailability']:
-        try:
-            rest_list = [i for i in resturant_dict]
-            if i.split(';')[0] in rest_list:
-                for place in resturants[i]['singleLocation']['offers']:
-                    results = DisneyDiningAvailability(resturant_dict[i.split(';')[0]],**place)
-                    print(results)
-                print('\n')
+    for t in meal_period:
 
-        except KeyError as err:
-            print(err)
+        url = f"https://disneyworld.disney.go.com/finder/api/v1/explorer-service/dining-availability-list/false/wdw/80007798;entityType=destination/2022-09-{day}/4/?mealPeriod={meal_period[t]}"
+
+        response = requests.request("GET", url, headers=headers)
+
+        json_raw = json.loads(response.text)
+
+        resturants = json_raw['availability']
+
+        for i in resturants:
+            if resturants[i]['hasAvailability']:
+                try:
+                    rest_list = [i for i in resturant_dict]
+                    if i.split(';')[0] in rest_list:
+                        for place in resturants[i]['singleLocation']['offers']:
+                            results = DisneyDiningAvailability(resturant_dict[i.split(';')[0]],**place)
+                            print(results)
+                        print('\n')
+
+                except KeyError as err:
+                    print(err)
