@@ -41,6 +41,7 @@ resturant_dict = {
     '19046067':'Wonderland Tea Party at 1900 Park Fare'
 }
 
+#Codes for times of day when searching online.
 meal_period = {
     'breakfast':80000712,
     'brunch':80000713,
