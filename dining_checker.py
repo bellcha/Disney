@@ -63,9 +63,9 @@ for day in park_days:
 
         response = requests.request("GET", url, headers=headers)
 
-        json_raw = json.loads(response.text)
+        raw_data = json.loads(response.text)
 
-        resturants = json_raw['availability']
+        resturants = raw_data['availability']
 
         for i in resturants:
             if resturants[i]['hasAvailability']:
