@@ -78,12 +78,10 @@ for day in park_days:
                         for place in resturants[i]['singleLocation']['offers']:
                             results = DisneyDiningAvailability(location=resturant_dict[i.split(';')[0]],
                             time=place['label'], date=place['date'])
-                            print(f'Resturant: {results.location}\nDate: {results.date}\nTime: {results.time}\n')
                             disney_df = disney_df.append(asdict(results), ignore_index=True)
 
                 except KeyError as err:
                     print(err)
-print(disney_df.head(5))
 
 disney_df.to_excel('disney_dining.xlsx', index=False)
 
