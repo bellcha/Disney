@@ -1,7 +1,7 @@
 import requests
 import json
 
-def get_resturant_availability(day, meal_period):
+def get_resturant_availability(day, meal_period) -> json:
     
     headers = {
     'authority': 'disneyworld.disney.go.com',
