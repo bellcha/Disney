@@ -4,8 +4,6 @@ from send_email import send_email
 from resturant_availability import get_resturant_availability
 
 
-#TODO: at least add a main() ffs.
-
 @dataclass
 class DisneyDiningAvailability:
     location:str
