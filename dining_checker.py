@@ -37,6 +37,8 @@ def main():
 
     park_days = [11,12,13,14,17]
 
+    rest_list = [i for i in resturant_dict]
+    
     for day in park_days:
 
         for t in meal_period:
@@ -46,7 +48,6 @@ def main():
             for i in resturants:
                 if resturants[i]['hasAvailability']:
                     try:
-                        rest_list = [i for i in resturant_dict]
                         if i.split(';')[0] in rest_list:
                             for place in resturants[i]['singleLocation']['offers']:
                                 results = DisneyDiningAvailability(location=resturant_dict[i.split(';')[0]],
