@@ -12,7 +12,7 @@ def send_email(attachment_file_name):
     EMAIL_ADDRESS = email_config['email']
     EMAIL_PASSWORD = email_config['password']
 
-    contacts = [email_config['email'], email_config['cc']]
+    contacts = [email_config['email']]
 
     msg = EmailMessage()
     msg['Subject'] = 'Disney Dining Schedule'
