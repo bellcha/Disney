@@ -34,14 +34,7 @@ def main():
         location.get_resturant_availability(11,period)
 
     print(location.availability[2])
-
-
-    #df = pd.DataFrame(asdict(data))
     
-    #print(df.head(1))
-    
-    #send_email('disney_dining.xlsx')
-
 if __name__ == '__main__':
  
     main()
