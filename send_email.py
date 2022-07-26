@@ -5,7 +5,7 @@ from configparser import ConfigParser
 
 def send_email(attachment_file_name):
     config = ConfigParser()
-    config.read('config.ini')
+    config.read('/home/administrator/Disney/config.ini')
 
     email_config = config['EMAIL']
 

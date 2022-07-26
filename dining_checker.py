@@ -1,5 +1,4 @@
 import pandas as pd
-from dataclasses import dataclass, asdict
 from send_email import send_email
 from resturant_availability import DisneyResturant
 
