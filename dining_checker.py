@@ -2,16 +2,7 @@ import pandas as pd
 from send_email import send_email
 from resturant_availability import DisneyResturant
 
-#Codes that Disney uses for resturants.  Not an complete list, just the ones I'm tracking.
-
-
-#Codes for times of day when searching online.
-meal_period = {
-    'breakfast':80000712,
-    'brunch':80000713,
-    'lunch':80000717,
-    'dinner':80000714
-}
+meal_period = ['breakfast','brunch','lunch','dinner']
 
 def main():
 
